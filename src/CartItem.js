@@ -17,10 +17,38 @@ class CartItem extends React.Component{
 // instead of arrow of function if we have used simple function then the value of this will be undefined and this.state will give error as we are access undefine variable
 // but as we have arrow function and arrow function does have their own binding and they follow parent bing hence the value of this would be the current instance of CartItem.
     increaseQuantity = ()=>{
-        console.log('this', this.state);
+        // console.log('this', this.state);
+
+        // we can change the state by 2 ways, FYI setState is a function of React.component
+        // 1st method 
+        // this.setState({
+        //     qty: this.state.qty+1
+        // });
+
+        // 2nd method, it used callback function as an argument, Rect.Component will call the callback funtion passing the value of previous state of the this.state in prevState.
+        // if prevState is required then use this method 
+        this.setState((prevState)=>{
+            return{
+                qty: prevState.qty+1
+            }
+        });
     };
 
-    render(){
+    decreaseQuantity = ()=>{
+        const { qty } = this.state;
+
+        if(qty === 0){
+            return;
+        }
+        // we have used setState function becuase it will re-render the react component, means it will the render fnction again and hence we will see the updated value of qty.
+        this.setState((prevState)=>{
+            return{
+                qty: prevState.qty-1
+            }
+        });
+    }
+
+    render(){  // render if function of React.Componenet
 
         const {qty, price, title} = this.state;
         return(
@@ -43,7 +71,8 @@ class CartItem extends React.Component{
                         <img 
                             className='action-icons' 
                             src="https://cdn-icons-png.flaticon.com/512/66/66889.png"  
-                            alt='decrease' 
+                            alt='decrease'
+                            onClick={this.decreaseQuantity}
                         />
                         <img 
                             className='action-icons' 
