@@ -4,18 +4,52 @@ import React from 'react';
 // Since the inline CSS is written in a JavaScript object, properties with two names, like background-color, must be written with camel case syntax like: backgroundColor, fontSize and etc
 
 class CartItem extends React.Component{
+
+    constructor(){
+        super();
+        this.state = {
+            price : 999,
+            title: 'Phone',
+            qty: 1,
+            img: ''
+        }
+    }
+// instead of arrow of function if we have used simple function then the value of this will be undefined and this.state will give error as we are access undefine variable
+// but as we have arrow function and arrow function does have their own binding and they follow parent bing hence the value of this would be the current instance of CartItem.
+    increaseQuantity = ()=>{
+        console.log('this', this.state);
+    };
+
     render(){
+
+        const {qty, price, title} = this.state;
         return(
             <div className='cart-item'>
                 <div className='left-block'>
                     <img style={styles.images}/>
                 </div>
                 <div className='right-block'>
-                    <div style={{fontSize : 25}}>Phone</div>
-                    <div style={{color : '#777'}}>999</div>
-                    <div style={{color : '#777'}}>Qty: 1</div>
+                    <div style={{fontSize : 22}}>{title}</div>
+                    <div style={{color : '#777'}}>Rs {price}</div>
+                    <div style={{color : '#777'}}>Qty: {qty}</div>
                     <div className='cart-item-actions'>
                         {/* Buttons */}
+                        <img 
+                            className='action-icons' 
+                            src="https://cdn-icons-png.flaticon.com/512/992/992651.png"  
+                            alt='increase' 
+                            onClick={this.increaseQuantity}
+                        />
+                        <img 
+                            className='action-icons' 
+                            src="https://cdn-icons-png.flaticon.com/512/66/66889.png"  
+                            alt='decrease' 
+                        />
+                        <img 
+                            className='action-icons' 
+                            src="https://cdn-icons-png.flaticon.com/128/10302/10302799.png"  
+                            alt='delete' 
+                        />
                     </div>
                 </div>
             </div>
@@ -26,9 +60,10 @@ class CartItem extends React.Component{
 // for styling a component in react we can use an javascript object 
 const styles ={
     images :{
-        height:110,
-        width: 110,
-        borderRadius: 4
+        height:120,
+        width: 120,
+        borderRadius: 4,
+        backgroundColor : '#777'
     }
 }
 export default CartItem;
