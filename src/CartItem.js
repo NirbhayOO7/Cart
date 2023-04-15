@@ -5,45 +5,13 @@ import React from 'react';
 
 class CartItem extends React.Component{
 
-// instead of arrow of function if we have used simple function then the value of this will be undefined and this.state will give error as we are accessing undefined variable
-// but as we have arrow function and arrow function does have their own binding and they follow parent binding hence the value of this would be the current instance of CartItem.
-    increaseQuantity = ()=>{
-        // console.log('this', this.state);
-
-        // we can change the state by 2 ways, FYI setState is a function of React.component
-        // 1st method 
-        // this.setState({
-        //     qty: this.state.qty+1
-        // });
-
-        // 2nd method, it used callback function as an argument, Rect.Component will call the callback funtion passing the value of previous state of the this.state in prevState.
-        // if prevState is required then use this method 
-        this.setState((prevState)=>{
-            return{
-                qty: prevState.qty+1
-            }
-        });
-    };
-
-    decreaseQuantity = ()=>{
-        // const { qty } = this.state;
-        const { qty } = this.props.product;  // props is the object that we have passed from parent component(Cart) to child componenet(CartItem) in the form of props.
-
-        if(qty === 0){
-            return;
-        }
-        // we have used setState function becuase it will re-render the react component, means it will the render fnction again and hence we will see the updated value of qty.
-        this.setState((prevState)=>{
-            return{
-                qty: prevState.qty-1
-            }
-        });
-    }
-
-    render(){  // render if function of React.Componenet
+    render(){  // render is a function of React.Componenet
 
         // const {qty, price, title} = this.state; 
         const {qty, price, title} = this.props.product;             // props is the object that we have passed from parent component(Cart) to child componenet(CartItem) in the form of props.
+
+        const { product, handleIncreaseQuantity, handleDecreaseQuantity, handleDeleteItem } = this.props;
+
         return(
             <div className='cart-item'>
                 <div className='left-block'>
@@ -59,18 +27,19 @@ class CartItem extends React.Component{
                             className='action-icons' 
                             src="https://cdn-icons-png.flaticon.com/512/992/992651.png"  
                             alt='increase' 
-                            onClick={this.increaseQuantity}
+                            onClick={()=>handleIncreaseQuantity(product)}  //always use arrow function as the value of this will the value of its class, incase of normal function we will lost the value of this.
                         />
                         <img 
                             className='action-icons' 
                             src="https://cdn-icons-png.flaticon.com/512/66/66889.png"  
                             alt='decrease'
-                            onClick={this.decreaseQuantity}
+                            onClick={()=> handleDecreaseQuantity(product)}
                         />
                         <img 
                             className='action-icons' 
                             src="https://cdn-icons-png.flaticon.com/128/10302/10302799.png"  
                             alt='delete' 
+                            onClick={()=> handleDeleteItem(product.id)}
                         />
                     </div>
                 </div>
