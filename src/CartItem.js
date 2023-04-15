@@ -5,17 +5,8 @@ import React from 'react';
 
 class CartItem extends React.Component{
 
-    constructor(){
-        super();
-        this.state = {
-            price : 999,
-            title: 'Phone',
-            qty: 1,
-            img: ''
-        }
-    }
-// instead of arrow of function if we have used simple function then the value of this will be undefined and this.state will give error as we are access undefine variable
-// but as we have arrow function and arrow function does have their own binding and they follow parent bing hence the value of this would be the current instance of CartItem.
+// instead of arrow of function if we have used simple function then the value of this will be undefined and this.state will give error as we are accessing undefined variable
+// but as we have arrow function and arrow function does have their own binding and they follow parent binding hence the value of this would be the current instance of CartItem.
     increaseQuantity = ()=>{
         // console.log('this', this.state);
 
@@ -35,7 +26,8 @@ class CartItem extends React.Component{
     };
 
     decreaseQuantity = ()=>{
-        const { qty } = this.state;
+        // const { qty } = this.state;
+        const { qty } = this.props.product;  // props is the object that we have passed from parent component(Cart) to child componenet(CartItem) in the form of props.
 
         if(qty === 0){
             return;
@@ -50,7 +42,8 @@ class CartItem extends React.Component{
 
     render(){  // render if function of React.Componenet
 
-        const {qty, price, title} = this.state;
+        // const {qty, price, title} = this.state; 
+        const {qty, price, title} = this.props.product;             // props is the object that we have passed from parent component(Cart) to child componenet(CartItem) in the form of props.
         return(
             <div className='cart-item'>
                 <div className='left-block'>
