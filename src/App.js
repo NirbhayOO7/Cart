@@ -12,21 +12,21 @@ class App extends React.Component {
                 price : 999,
                 title: 'Mobile Phone',
                 qty: 4,
-                img: '',
+                img: 'https://images.unsplash.com/photo-1676115723792-69e7a3f6d504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2Ftc3VuZyUyMHMyMyUyMHVsdHJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                 id:1
             },
             {
                 price : 99,
                 title: 'Watch',
                 qty: 10,
-                img: '',
+                img: 'https://images.unsplash.com/photo-1542541864-4abf21a55761?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHNtYXJ0V2F0Y2h8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                 id:2
             },
             {
                 price : 999,
                 title: 'Laptop',
                 qty: 1,
-                img: '',
+                img: 'https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nzl8fGxhcHRvcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
                 id:3
             }
         ]
@@ -93,21 +93,45 @@ decreaseQuantity = (product)=>{
     return count;
   }
 
+  getTotal= () =>{
+    const { products } = this.state;
+
+    let total=0;
+
+    products.forEach((product)=>{
+      total+=product.qty*product.price
+    });
+
+    return total;
+  }
+
+
   render(){
     const { products } = this.state;
 
     return (
       <div className="App">
         <Navbar count={this.getCartCount()}/>
-        <Cart 
+        <Cart
           products={products}
           handleIncreaseQuantity={this.increaseQuantity}
           handleDecreaseQuantity={this.decreaseQuantity}
           handleDeleteItem={this.deleteItem}
           count={this.getCartCount}
         />
+        <div style={style.footer}>
+          TOTAL: {this.getTotal()}
+        </div>
       </div>
     );
+  }
+}
+
+const style ={
+  footer:{
+    height: 70,
+    fontSize: 30,
+    padding: 18
   }
 }
 
