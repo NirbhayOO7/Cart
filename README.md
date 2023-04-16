@@ -1,4 +1,25 @@
-# Getting Started with Create React App
+# Description about the repository
+
+This git repository contains the code for making a clone of shopping cart present on shooping apps like flipkart, amazon and etc.
+
+TechStack used:
+1. React.js
+2. HTML
+3. CSS
+4. Javascript
+5. Node.js
+6. Git & Github
+
+##Images of Cart Application.
+![Homepage](./Images_of_/Homepage.png)
+
+Features
+1. We can increase/decrease the quantity of items present in the Cart respectively the total amount and number of items present in cart will be updated.
+2. We can similarly delete the items from the cart.
+
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
