@@ -10,7 +10,7 @@ TechStack used:
 5. Node.js
 6. Git & Github
 
-##Images of Cart Application.
+## Images of Cart Application.
 ![Homepage](./Images_of_App/Homepage.png)
 
 Features
