@@ -11,7 +11,7 @@ TechStack used:
 6. Git & Github
 
 ##Images of Cart Application.
-![Homepage](./Images_of_/Homepage.png)
+![Homepage](./Images_of_App/Homepage.png)
 
 Features
 1. We can increase/decrease the quantity of items present in the Cart respectively the total amount and number of items present in cart will be updated.
