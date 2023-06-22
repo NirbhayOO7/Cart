@@ -9,6 +9,7 @@ TechStack used:
 4. Javascript
 5. Node.js
 6. Git & Github
+7. Firebase Database.
 
 ## Images of Cart Application.
 ![Homepage](./Images_of_App/Homepage.png)
